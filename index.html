@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d12" />
+  <meta name="description" content="Abishek — frontend developer building thoughtful, responsive web experiences." />
+  <title>Abishek — Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d12; --panel: #12151d; --panel-2: #171b25; --text: #f3f5f7;
+      --muted: #9ba3b4; --line: rgba(255,255,255,.11); --accent: #b6f36b;
+      --accent-dark: #1d2b12; --radius: 22px; --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Manrope, sans-serif; line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin-inline: auto; }
+    .mono { font-family: "DM Mono", monospace; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; }
+    .muted { color: var(--muted); }
+    .nav { position: sticky; top: 0; z-index: 20; background: rgba(11,13,18,.78); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+    .nav-inner { height: 76px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; gap: 10px; align-items:center; font-weight:800; letter-spacing:-.04em; }
+    .brand-mark { width: 32px; height: 32px; display:grid; place-items:center; color:#0b0d12; background:var(--accent); border-radius:10px; font-size:.9rem; }
+    .nav-links { display:flex; gap:28px; align-items:center; color:var(--muted); font-size:.88rem; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-cta { border:1px solid var(--line); padding:10px 15px; border-radius:999px; color:var(--text)!important; }
+    .menu-btn { display:none; background:none; border:1px solid var(--line); color:var(--text); border-radius:10px; padding:9px 11px; }
+    .hero { padding: 92px 0 76px; position:relative; overflow:hidden; }
+    .hero:before { content:""; position:absolute; width:470px; height:470px; border-radius:50%; right:-150px; top:-170px; background:radial-gradient(circle, rgba(182,243,107,.13), transparent 68%); pointer-events:none; }
+    .eyebrow { display:flex; gap:10px; align-items:center; color:var(--accent); margin-bottom:24px; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 14px var(--accent); }
+    h1 { font-size:clamp(3.2rem, 8vw, 6.6rem); line-height:.99; letter-spacing:-.075em; margin:0; max-width:900px; }
+    h1 .outline { color:transparent; -webkit-text-stroke:1px rgba(243,245,247,.72); }
+    .hero-bottom { display:flex; justify-content:space-between; gap:36px; align-items:end; margin-top:36px; }
+    .hero-copy { max-width:530px; font-size:1.04rem; color:var(--muted); }
+    .hero-copy strong { color:var(--text); font-weight:600; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:25px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:13px 18px; border-radius:999px; font-weight:800; font-size:.88rem; border:1px solid transparent; transition:transform .2s, background .2s; cursor:pointer; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--accent); color:#11150c; }
+    .btn-secondary { border-color:var(--line); color:var(--text); }
+    .hero-note { min-width:180px; border-left:1px solid var(--line); padding-left:20px; color:var(--muted); font-size:.8rem; }
+    .hero-note b { display:block; color:var(--text); font-size:1rem; margin-top:6px; }
+    .ticker { border-block:1px solid var(--line); overflow:hidden; padding:17px 0; color:var(--muted); }
+    .ticker-track { display:flex; justify-content:space-around; gap:30px; flex-wrap:wrap; }
+    .ticker span { white-space:nowrap; font-family:"DM Mono",monospace; font-size:.72rem; letter-spacing:.08em; }
+    section { padding:94px 0; }
+    .section-head { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:34px; }
+    .section-kicker { color:var(--accent); margin-bottom:12px; }
+    h2 { font-size:clamp(2.1rem, 4vw, 3.4rem); letter-spacing:-.065em; line-height:1.08; margin:0; }
+    .section-desc { max-width:390px; color:var(--muted); margin:0; font-size:.92rem; }
+    .about-grid { display:grid; grid-template-columns: .9fr 1.1fr; gap:18px; }
+    .about-card, .stat-card, .project-card, .contact-card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); }
+    .about-card { padding:30px; min-height:300px; display:flex; flex-direction:column; justify-content:space-between; }
+    .big-quote { font-size:clamp(1.5rem, 3vw, 2.3rem); letter-spacing:-.055em; line-height:1.25; }
+    .big-quote span { color:var(--accent); }
+    .about-right { display:grid; grid-template-rows:1fr auto; gap:18px; }
+    .about-text { padding:30px; color:var(--muted); }
+    .about-text p:first-child { margin-top:0; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .stat-card { padding:19px; }
+    .stat-num { font-size:1.45rem; font-weight:800; letter-spacing:-.05em; }
+    .stat-label { color:var(--muted); font-size:.76rem; margin-top:3px; }
+    .projects { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .project-card { overflow:hidden; transition:transform .25s, border-color .25s; }
+    .project-card:hover { transform:translateY(-5px); border-color:rgba(182,243,107,.4); }
+    .project-visual { min-height:230px; padding:24px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#1a2630,#13161d); }
+    .project-visual.green { background:linear-gradient(135deg,#20341b,#111b16); }
+    .project-visual.purple { background:linear-gradient(135deg,#29203b,#15141e); }
+    .project-visual.orange { background:linear-gradient(135deg,#3a291b,#191612); }
+    .mock-window { width:90%; max-width:390px; border:1px solid rgba(255,255,255,.19); border-radius:12px; background:rgba(10,12,17,.8); box-shadow:0 20px 50px rgba(0,0,0,.28); transform:rotate(-2deg); overflow:hidden; }
+    .mock-top { display:flex; gap:5px; padding:10px; border-bottom:1px solid var(--line); }
+    .mock-top i { width:6px; height:6px; background:#5e6572; border-radius:50%; }
+    .mock-body { padding:17px; }
+    .mock-title { height:10px; width:52%; background:#edf2e8; border-radius:4px; margin-bottom:12px; opacity:.9; }
+    .mock-line { height:5px; width:80%; background:#4b5661; border-radius:4px; margin:7px 0; }
+    .mock-chips { display:flex; gap:7px; margin-top:16px; }
+    .mock-chips i { display:block; width:50px; height:22px; border-radius:6px; background:#b6f36b; opacity:.85; }
+    .mock-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:15px; }
+    .mock-cards i { height:52px; border-radius:6px; background:linear-gradient(135deg,#283b2a,#18251a); border:1px solid #3d5740; }
+    .project-number { position:absolute; top:18px; left:20px; color:rgba(255,255,255,.58); }
+    .project-icon { position:absolute; right:20px; top:16px; font-size:1.3rem; color:var(--accent); }
+    .project-info { padding:24px; }
+    .project-meta { display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:.72rem; margin-bottom:12px; }
+    .project-info h3 { margin:0 0 9px; font-size:1.35rem; letter-spacing:-.04em; }
+    .project-info p { color:var(--muted); font-size:.87rem; margin:0 0 18px; }
+    .tags { display:flex; flex-wrap:wrap; gap:7px; }
+    .tag { font-size:.7rem; color:#dce1e8; border:1px solid var(--line); border-radius:999px; padding:6px 9px; }
+    .skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .skill { padding:19px; background:var(--panel); border:1px solid var(--line); border-radius:16px; }
+    .skill-icon { color:var(--accent); font-size:1.1rem; margin-bottom:16px; }
+    .skill h3 { font-size:.95rem; margin:0 0 7px; }
+    .skill p { color:var(--muted); font-size:.78rem; margin:0; }
+    .timeline { border-top:1px solid var(--line); }
+    .timeline-row { display:grid; grid-template-columns:160px 1fr; gap:24px; padding:24px 0; border-bottom:1px solid var(--line); }
+    .timeline-date { color:var(--accent); }
+    .timeline-row h3 { margin:0 0 6px; font-size:1.08rem; }
+    .timeline-row p { margin:0; color:var(--muted); font-size:.88rem; }
+    .contact-card { padding:clamp(26px,5vw,56px); display:flex; align-items:end; justify-content:space-between; gap:30px; background:radial-gradient(circle at 90% 10%,rgba(182,243,107,.1),transparent 32%),var(--panel); }
+    .contact-card h2 { max-width:620px; }
+    .contact-card p { color:var(--muted); max-width:430px; }
+    .contact-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    footer { padding:26px 0 36px; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .back-top { color:var(--text); }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (max-width:800px) {
+      .nav-links { display:none; position:absolute; top:75px; left:0; right:0; padding:20px 22px 24px; background:#0b0d12; border-bottom:1px solid var(--line); flex-direction:column; align-items:flex-start; gap:18px; }
+      .nav-links.open { display:flex; }
+      .menu-btn { display:block; }
+      .hero { padding-top:70px; }
+      .hero-bottom { flex-direction:column; align-items:flex-start; }
+      .hero-note { border-left:0; border-top:1px solid var(--line); padding:16px 0 0; }
+      .about-grid, .projects { grid-template-columns:1fr; }
+      .about-right { grid-template-rows:auto auto; }
+      .skills-grid { grid-template-columns:repeat(2,1fr); }
+      .section-head { flex-direction:column; align-items:flex-start; }
+      .contact-card { align-items:flex-start; flex-direction:column; }
+    }
+    @media (max-width:480px) {
+      .wrap { width:min(var(--max), calc(100% - 30px)); }
+      .nav-inner { height:68px; }
+      .nav-links { top:67px; }
+      .hero { padding:58px 0; }
+      h1 { font-size:3.35rem; }
+      section { padding:68px 0; }
+      .stats { grid-template-columns:1fr; }
+      .timeline-row { grid-template-columns:1fr; gap:7px; }
+      .skills-grid { gap:9px; }
+      .skill { padding:15px; }
+      .project-visual { min-height:200px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } .reveal { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home" aria-label="Abishek home"><span class="brand-mark">A.</span><span>abishek<span style="color:var(--accent)">.</span></span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#journey">Journey</a><a class="nav-cta" href="#contact">Let's talk ↗</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div class="eyebrow mono"><span class="dot"></span> Frontend developer · Building for the web</div>
+        <h1>Turning ideas<br>into <span class="outline">digital</span><br>experiences.</h1>
+        <div class="hero-bottom">
+          <div>
+            <p class="hero-copy">Hey, I’m <strong>Abishek</strong> — a Computer Science and Business Systems graduate-in-progress who enjoys building clean, responsive interfaces and practical technology projects.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#work">Explore my work <span>↘</span></a>
+              <a class="btn btn-secondary" href="#contact">Get in touch <span>↗</span></a>
+            </div>
+          </div>
+          <div class="hero-note mono">Currently focused on<b>Frontend & web apps</b><span style="display:block;margin-top:5px">Chennai, India · Open to opportunities</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker"><div class="wrap ticker-track"><span>✳ UI DEVELOPMENT</span><span>✳ RESPONSIVE DESIGN</span><span>✳ JAVASCRIPT</span><span>✳ PROBLEM SOLVING</span><span>✳ CONTINUOUS LEARNING</span></div></div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="section-kicker mono">01 / A little about me</div><h2>Curious by nature.<br>Builder by choice.</h2></div><p class="section-desc">I like making technology feel simple — from a clear user interface to a system that solves a real-world problem.</p></div>
+        <div class="about-grid reveal">
+          <div class="about-card"><div class="mono muted">MY APPROACH</div><div class="big-quote">“Good design is not just how it looks. It’s <span>how naturally it works.</span>”</div><div class="mono muted">DESIGN · CODE · ITERATE</div></div>
+          <div class="about-right">
+            <div class="about-card about-text"><p>I’m studying Computer Science and Business Systems, with a strong interest in frontend development and web technologies.</p><p>I enjoy turning ideas into usable products, learning how systems connect behind the scenes, and collaborating with people to ship better experiences.</p><p>Outside of interface work, I’ve explored machine learning and smart-agriculture concepts — projects that taught me to connect code with real-world needs.</p></div>
+            <div class="stats"><div class="stat-card"><div class="stat-num">UI/UX</div><div class="stat-label">Clean, user-first interfaces</div></div><div class="stat-card"><div class="stat-num">Web</div><div class="stat-label">Frontend development</div></div><div class="stat-card"><div class="stat-num">ML + IoT</div><div class="stat-label">Exploring applied tech</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="section-kicker mono">02 / Selected work</div><h2>Projects with<br>a purpose.</h2></div><p class="section-desc">A selection of projects that reflect my interest in useful interfaces, data, and applied technology. Replace or link these cards to your live demos and repositories.</p></div>
+        <div class="projects">
+          <article class="project-card reveal">
+            <div class="project-visual green"><span class="project-number mono">PROJECT / 01</span><span class="project-icon">✳</span><div class="mock-window"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title"></div><div class="mock-line"></div><div class="mock-line" style="width:58%"></div><div class="mock-chips"><i></i><i style="background:#dce8d1"></i><i style="background:#5b7e4b"></i></div><div class="mock-cards"><i></i><i></i><i></i></div></div></div></div>
+            <div class="project-info"><div class="project-meta"><span class="mono">Machine learning · Agriculture</span><span>↗</span></div><h3>Smart Agriculture System</h3><p>A crop recommendation concept combining soil and weather inputs with crop-price information to help users make more informed farming decisions.</p><div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">scikit-learn</span><span class="tag">HTML/CSS</span><span class="tag">Weather API</span></div></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual"><span class="project-number mono">PROJECT / 02</span><span class="project-icon">⌁</span><div class="mock-window"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title" style="width:66%"></div><div class="mock-line" style="width:70%"></div><div class="mock-line" style="width:48%"></div><div class="mock-cards"><i style="background:linear-gradient(135deg,#233c4d,#172631);border-color:#355568"></i><i style="background:linear-gradient(135deg,#233c4d,#172631);border-color:#355568"></i><i style="background:linear-gradient(135deg,#233c4d,#172631);border-color:#355568"></i></div><div class="mock-chips"><i style="background:#9ad8e8"></i><i style="background:#385d6b"></i></div></div></div></div>
+            <div class="project-info"><div class="project-meta"><span class="mono">Computer vision · Safety</span><span>↗</span></div><h3>PPE Detection System</h3><p>A computer-vision project focused on identifying personal protective equipment in images or video, with dataset collection and model training as key tasks.</p><div class="tags"><span class="tag">Python</span><span class="tag">YOLO</span><span class="tag">OpenCV</span><span class="tag">Model Training</span></div></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual purple"><span class="project-number mono">PROJECT / 03</span><span class="project-icon">◈</span><div class="mock-window"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title" style="width:44%"></div><div class="mock-line" style="width:86%"></div><div class="mock-line" style="width:68%"></div><div class="mock-chips"><i style="background:#c8a6ff"></i><i style="background:#65518d"></i><i style="background:#8b74b8"></i></div></div></div></div>
+            <div class="project-info"><div class="project-meta"><span class="mono">Frontend · Web application</span><span>↗</span></div><h3>Knowledge Hub UI</h3><p>A Wikipedia-inspired web-app concept for browsing and presenting information with a clear hierarchy, readable layouts, and responsive navigation.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive UI</span></div></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-visual orange"><span class="project-number mono">PROJECT / 04</span><span class="project-icon">⌘</span><div class="mock-window"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title" style="width:58%"></div><div class="mock-line" style="width:88%"></div><div class="mock-line" style="width:62%"></div><div class="mock-cards"><i style="background:linear-gradient(135deg,#51341f,#2a2119);border-color:#745036"></i><i style="background:linear-gradient(135deg,#51341f,#2a2119);border-color:#745036"></i><i style="background:linear-gradient(135deg,#51341f,#2a2119);border-color:#745036"></i></div></div></div></div>
+            <div class="project-info"><div class="project-meta"><span class="mono">Testing · Retail systems</span><span>↗</span></div><h3>POS Testing Practice</h3><p>Hands-on learning around retail POS workflows, API checks in Postman, and order journeys such as BOPIS and BORIS.</p><div class="tags"><span class="tag">POS</span><span class="tag">Postman</span><span class="tag">API Testing</span><span class="tag">Retail Workflows</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="section-kicker mono">03 / My toolkit</div><h2>Tools I work with.</h2></div><p class="section-desc">The technologies I’ve used across web development, backend fundamentals, and applied machine-learning projects.</p></div>
+        <div class="skills-grid">
+          <div class="skill reveal"><div class="skill-icon">✳</div><h3>Frontend</h3><p>HTML, CSS, JavaScript, Bootstrap, responsive layouts</p></div>
+          <div class="skill reveal"><div class="skill-icon">⌘</div><h3>Backend basics</h3><p>Node.js, Express, Flask, REST APIs</p></div>
+          <div class="skill reveal"><div class="skill-icon">▦</div><h3>Databases</h3><p>MySQL, MongoDB, JSON data workflows</p></div>
+          <div class="skill reveal"><div class="skill-icon">◎</div><h3>AI & computer vision</h3><p>Python, scikit-learn, YOLO, OpenCV</p></div>
+          <div class="skill reveal"><div class="skill-icon">↔</div><h3>API testing</h3><p>Postman, request/response validation, workflow testing</p></div>
+          <div class="skill reveal"><div class="skill-icon">◇</div><h3>Tools & workflow</h3><p>Git, debugging, iterative development</p></div>
+          <div class="skill reveal"><div class="skill-icon">▤</div><h3>UI craft</h3><p>Visual hierarchy, accessible patterns, consistency</p></div>
+          <div class="skill reveal"><div class="skill-icon">↗</div><h3>Always learning</h3><p>Exploring new tools and improving fundamentals</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="section-kicker mono">04 / The journey</div><h2>Learning by doing.</h2></div><p class="section-desc">A quick snapshot of my current path. Add dates, internships, certifications, and achievements as you update your portfolio.</p></div>
+        <div class="timeline reveal">
+          <div class="timeline-row"><div class="timeline-date mono">CURRENT</div><div><h3>Computer Science & Business Systems</h3><p>Building a foundation across programming, software systems, and business-oriented problem solving.</p></div></div>
+          <div class="timeline-row"><div class="timeline-date mono">PROJECT WORK</div><div><h3>Frontend & applied technology projects</h3><p>Practising responsive web interfaces while exploring computer vision and smart-agriculture applications.</p></div></div>
+          <div class="timeline-row"><div class="timeline-date mono">NEXT CHAPTER</div><div><h3>Growing as a developer</h3><p>Looking to contribute to a team, learn from real products, and turn feedback into better software.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <div><div class="section-kicker mono">05 / Have a project in mind?</div><h2>Let’s build something useful.</h2><p>I’m always happy to connect about frontend opportunities, collaborative projects, or ideas worth building.</p></div>
+          <div class="contact-actions"><a class="btn btn-primary" href="mailto:your.email@example.com?subject=Let's%20connect">Email me ↗</a><a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a class="btn btn-secondary" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Abishek. Designed with curiosity.</span><a class="back-top" href="#home">Back to top ↑</a></div></footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
